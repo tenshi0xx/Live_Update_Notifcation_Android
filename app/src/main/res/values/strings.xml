@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LiveUpdateNotification</string>
+    <string name="get_fcm_token">Get FCM Token</string>
+    <string name="local_notification">Local Notification</string>
 </resources>

@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.android.gms.tasks.OnCompleteListener
@@ -46,7 +47,9 @@ class MainActivity : ComponentActivity() {
     fun getFCMToken() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
-                Log.w("FCM_TOKEN", "Fetching FCM registration token failed", task.exception)
+                if (BuildConfig.DEBUG) {
+                    Log.w("FCM_TOKEN", "Fetching FCM registration token failed", task.exception)
+                }
                 return@OnCompleteListener
             }
 
@@ -54,10 +57,11 @@ class MainActivity : ComponentActivity() {
             val token = task.result
 
             // Log and use your token
-            Log.d("FCM_TOKEN", "FCM Registration Token: $token")
+            if (BuildConfig.DEBUG) {
+                Log.d("FCM_TOKEN", "FCM Registration Token: $token")
+            }
         })
     }
-
 }
 
 @Composable
@@ -72,7 +76,7 @@ fun MainUi(modifier: Modifier = Modifier, fcmNotificationClicked: () -> Unit) {
         Button(
             onClick = fcmNotificationClicked
         ) {
-            Text("Get FCM Token")
+            Text(stringResource(R.string.get_fcm_token))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -82,7 +86,7 @@ fun MainUi(modifier: Modifier = Modifier, fcmNotificationClicked: () -> Unit) {
 
             }
         ) {
-            Text("Local Notification")
+            Text(stringResource(R.string.local_notification))
         }
     }
 }
