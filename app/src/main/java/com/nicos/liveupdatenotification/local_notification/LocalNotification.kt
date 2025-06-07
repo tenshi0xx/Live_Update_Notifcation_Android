@@ -20,11 +20,20 @@ class LocalNotification(private val context: Context) {
     private val channelName = "Channel Name"
     private val channelDescription = "Channel Description"
 
+    companion object {
+        private const val currentProgress = 55
+        private const val currentProgressSegmentOne = 33
+        private const val currentProgressSegmentTwo = 33
+        private const val currentProgressSegmentThree = 33
+        private const val currentProgressPointOne = 33
+        private const val currentProgressPointTwo = 66
+    }
+
     internal fun showNotification() {
         Notification.Builder(context, channelId).apply {
             setSmallIcon(R.drawable.ic_android_black_24dp)
-            setContentTitle("Local Notification Title")
-            setContentText("Local Notification Text")
+            setContentTitle(context.getString(R.string.local_notification_title))
+            setContentText(context.getString(R.string.local_notification_text))
             setAutoCancel(true)
 
             var progressStyle: Notification.ProgressStyle =
@@ -48,19 +57,6 @@ class LocalNotification(private val context: Context) {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.BAKLAVA)
-    private fun handleProgressSegment(): List<Notification.ProgressStyle.Segment> {
-        return listOf(
-            Notification.ProgressStyle.Segment(33)
-                .setColor(context.getColor(R.color.teal_200)),
-            Notification.ProgressStyle.Segment(33)
-                .setColor(context.getColor(R.color.purple_200)),
-            Notification.ProgressStyle.Segment(33)
-                .setColor(context.getColor(R.color.purple_700))
-
-        )
-    }
-
     private fun getAndCreateProgressStyle(): Notification.ProgressStyle {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
             val progressSegmentList: List<Notification.ProgressStyle.Segment> =
@@ -69,7 +65,7 @@ class LocalNotification(private val context: Context) {
                 handleProgressPoint()
             Notification.ProgressStyle().apply {
                 setStyledByProgress(false)
-                setProgress(33)
+                setProgress(currentProgress)
                 setProgressTrackerIcon(
                     Icon.createWithResource(
                         context,
@@ -89,11 +85,24 @@ class LocalNotification(private val context: Context) {
     }
 
     @RequiresApi(Build.VERSION_CODES.BAKLAVA)
+    private fun handleProgressSegment(): List<Notification.ProgressStyle.Segment> {
+        return listOf(
+            Notification.ProgressStyle.Segment(currentProgressSegmentOne)
+                .setColor(context.getColor(R.color.teal_200)),
+            Notification.ProgressStyle.Segment(currentProgressSegmentTwo)
+                .setColor(context.getColor(R.color.purple_200)),
+            Notification.ProgressStyle.Segment(currentProgressSegmentThree)
+                .setColor(context.getColor(R.color.purple_700))
+
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.BAKLAVA)
     private fun handleProgressPoint(): List<Notification.ProgressStyle.Point> {
         return listOf(
-            Notification.ProgressStyle.Point(33)
+            Notification.ProgressStyle.Point(currentProgressPointOne)
                 .setColor(context.getColor(android.R.color.holo_green_light)),
-            Notification.ProgressStyle.Point(66)
+            Notification.ProgressStyle.Point(currentProgressPointTwo)
                 .setColor(context.getColor(android.R.color.holo_green_light))
         )
     }

@@ -62,23 +62,6 @@ class FirebaseService : FirebaseMessagingService() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.BAKLAVA)
-    private fun handleProgressSegment(notificationModel: NotificationModel): List<Notification.ProgressStyle.Segment> {
-        if (notificationModel.currentProgressSegmentOne != null && notificationModel.currentProgressSegmentTwo != null && notificationModel.currentProgressSegmentThree != null) {
-            return listOf(
-                Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentOne)
-                    .setColor(this@FirebaseService.getColor(R.color.teal_200)),
-                Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentTwo)
-                    .setColor(this@FirebaseService.getColor(R.color.purple_200)),
-                Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentThree)
-                    .setColor(this@FirebaseService.getColor(R.color.purple_700))
-
-            )
-        }
-
-        return emptyList()
-    }
-
     private fun getAndCreateProgressStyle(notificationModel: NotificationModel): Notification.ProgressStyle {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
             val progressSegmentList: List<Notification.ProgressStyle.Segment> =
@@ -104,6 +87,23 @@ class FirebaseService : FirebaseMessagingService() {
         } else {
             TODO("VERSION.SDK_INT < BAKLAVA")
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.BAKLAVA)
+    private fun handleProgressSegment(notificationModel: NotificationModel): List<Notification.ProgressStyle.Segment> {
+        if (notificationModel.currentProgressSegmentOne != null && notificationModel.currentProgressSegmentTwo != null && notificationModel.currentProgressSegmentThree != null) {
+            return listOf(
+                Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentOne)
+                    .setColor(this@FirebaseService.getColor(R.color.teal_200)),
+                Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentTwo)
+                    .setColor(this@FirebaseService.getColor(R.color.purple_200)),
+                Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentThree)
+                    .setColor(this@FirebaseService.getColor(R.color.purple_700))
+
+            )
+        }
+
+        return emptyList()
     }
 
     @RequiresApi(Build.VERSION_CODES.BAKLAVA)
