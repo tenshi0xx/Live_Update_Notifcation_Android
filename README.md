@@ -37,11 +37,6 @@ notifications to deliver rich, timely updates to the user.
 
 # 📚 Getting Started
 
-- Clone the repository
-- Connect your Firebase project and update the google-services.json
-- Run the app on a device or emulator running Android 16 (SDK 36)
-- Send a test FCM with the appropriate payload, or trigger a local notification update
-
 1️⃣ Clone the Repository <br />
 2️⃣ Set Up Firebase
 
