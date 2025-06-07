@@ -26,9 +26,9 @@ notifications to deliver rich, timely updates to the user.
 # 📦 What’s Inside
 
 - Sample app written in Kotlin
-  Firebase integration (with sample payload format)
-  Notification channel setup and management
-  Code examples to create/update live notifications
+- Firebase integration (with sample payload format)
+- Notification channel setup and management
+- Code examples to create/update live notifications
 
 # 🔧 Requirements
 
@@ -62,8 +62,6 @@ notifications to deliver rich, timely updates to the user.
 perfect for use cases like order tracking, fitness goals, or download status.
 
 Feel free to modify the text to include your repo name or personal style.
-
-
 
 # Versioning
 
