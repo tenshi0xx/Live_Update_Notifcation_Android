@@ -65,7 +65,7 @@ fun MainUi(modifier: Modifier = Modifier, fcmNotificationClicked: () -> Unit) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp), // Add some padding around the column
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -84,8 +84,6 @@ fun MainUi(modifier: Modifier = Modifier, fcmNotificationClicked: () -> Unit) {
         ) {
             Text("Local Notification")
         }
-
-        // You can add other UI elements here as needed
     }
 }
 
