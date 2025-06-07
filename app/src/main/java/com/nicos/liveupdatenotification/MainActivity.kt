@@ -5,13 +5,20 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.nicos.liveupdatenotification.ui.theme.LiveUpdateNotificationTheme
@@ -24,9 +31,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             LiveUpdateNotificationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    MainUi(
+                        modifier = Modifier.padding(innerPadding),
+                        fcmNotificationClicked = {
+                            getFCMToken()
+                        }
                     )
                 }
             }
@@ -46,25 +55,48 @@ class MainActivity : ComponentActivity() {
 
             // Log and use your token
             Log.d("FCM_TOKEN", "FCM Registration Token: $token")
-            // You would typically send this token to your app server to store it
-            // and associate it with the current user.
         })
     }
 
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
+fun MainUi(modifier: Modifier = Modifier, fcmNotificationClicked: () -> Unit) {
+    Column(
         modifier = modifier
-    )
+            .fillMaxSize()
+            .padding(16.dp), // Add some padding around the column
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(
+            onClick = fcmNotificationClicked
+        ) {
+            Text("Get FCM Token")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+
+            }
+        ) {
+            Text("Local Notification")
+        }
+
+        // You can add other UI elements here as needed
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+private fun GreetingPreview() {
     LiveUpdateNotificationTheme {
-        Greeting("Android")
+        MainUi(
+            fcmNotificationClicked = {
+
+            }
+        )
     }
 }
