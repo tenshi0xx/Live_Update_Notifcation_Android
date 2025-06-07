@@ -55,12 +55,14 @@ notifications to deliver rich, timely updates to the user.
 - Connect a physical device or use an emulator running Android 16
 - Press Run in Android Studio to build and install the app
 
-4️⃣ Test Live Notifications
+4️⃣ Test Live Notifications <br />
 🔹 Option A: Test with Local Notification
 
 - Tap the "Send Local Notification" button in the app
 - It creates a live progress notification based on a local NotificationModel instance
-  🔹 Option B: Test with Firebase Console
+
+🔹 Option B: Test with Firebase Console
+
 - Go to Firebase Console > Cloud Messaging > Send Your First Message
 - Enter a title and body (these will be overridden by data payload)
 - Open Advanced options → Data
