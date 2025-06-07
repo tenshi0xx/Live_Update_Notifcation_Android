@@ -22,13 +22,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.nicos.liveupdatenotification.local_notification.LocalNotification
 import com.nicos.liveupdatenotification.ui.theme.LiveUpdateNotificationTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var localNotification: LocalNotification
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        getFCMToken()
+        localNotification = LocalNotification(this)
         setContent {
             LiveUpdateNotificationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -36,6 +40,9 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding),
                         fcmNotificationClicked = {
                             getFCMToken()
+                        },
+                        localNotificationClicked = {
+                            localNotification.showNotification()
                         }
                     )
                 }
@@ -65,7 +72,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainUi(modifier: Modifier = Modifier, fcmNotificationClicked: () -> Unit) {
+fun MainUi(
+    modifier: Modifier = Modifier,
+    fcmNotificationClicked: () -> Unit,
+    localNotificationClicked: () -> Unit
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -82,9 +93,7 @@ fun MainUi(modifier: Modifier = Modifier, fcmNotificationClicked: () -> Unit) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = {
-
-            }
+            onClick = localNotificationClicked
         ) {
             Text(stringResource(R.string.local_notification))
         }
@@ -96,9 +105,8 @@ fun MainUi(modifier: Modifier = Modifier, fcmNotificationClicked: () -> Unit) {
 private fun GreetingPreview() {
     LiveUpdateNotificationTheme {
         MainUi(
-            fcmNotificationClicked = {
-
-            }
+            fcmNotificationClicked = {},
+            localNotificationClicked = {}
         )
     }
 }
