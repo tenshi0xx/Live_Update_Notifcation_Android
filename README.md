@@ -11,6 +11,49 @@
 [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/@nicosnicolaou16)
 [![Static Badge](https://img.shields.io/badge/Developer_Profile-blue?style=for-the-badge&label=Google)](https://g.dev/nicolaou_nicos)
 
+This repository provides a working example of implementing Live Update Notifications on Android 16 (
+Android U). It demonstrates how to leverage both Firebase Cloud Messaging (FCM) and local
+notifications to deliver rich, timely updates to the user.
+
+# 🚀 Features
+- 🔔 Live Notifications support on Android 16
+- ☁️ Firebase Cloud Messaging integration
+- 📦 Payload handling and dynamic content updates
+- 📱 Local notification example to simulate live updates without a backend
+- 💡 Best practices for targeting Android 16+ notification behavior
+
+# 📦 What’s Inside
+- Sample app written in Kotlin
+Firebase integration (with sample payload format)
+Notification channel setup and management
+Code examples to create/update live notifications
+
+# 🔧 Requirements
+- Target SDK 34 (Android 14), compiled against Android 16 preview SDK
+- Firebase project (for push notifications)
+
+# 📚 Getting Started
+- Clone the repository
+- Connect your Firebase project and update the google-services.json
+- Run the app on a device or emulator running Android 16
+- Send a test FCM with the appropriate payload, or trigger a local notification update
+
+# 📝 Example FCM Payload
+
+```json
+{
+  "title": "Test",
+  "body": "Test",
+  "currentProgress": "55",
+  "currentProgressSegmentOne": "33",
+  "currentProgressSegmentTwo": "33",
+  "currentProgressSegmentThree": "33",
+  "currentProgressPointOne": "33",
+  "currentProgressPointTwo": "66"
+}
+
+```
+
 # Versioning
 
 Target SDK version: 35 <br />
