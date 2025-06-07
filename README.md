@@ -42,7 +42,7 @@ notifications to deliver rich, timely updates to the user.
 - Run the app on a device or emulator running Android 16 (SDK 36)
 - Send a test FCM with the appropriate payload, or trigger a local notification update
 
-1️⃣ Clone the Repository
+1️⃣ Clone the Repository <br />
 2️⃣ Set Up Firebase
 
 - Go to Firebase Console and create a new project (or use an existing one).
@@ -55,12 +55,12 @@ notifications to deliver rich, timely updates to the user.
     - The token will be shown in a toast and logged in Logcat
     - Copy this token for sending test messages
 
-5️⃣ Run the App
+3️⃣ Run the App
 
 - Connect a physical device or use an emulator running Android 16
 - Press Run in Android Studio to build and install the app
 
-6️⃣ Test Live Notifications
+4️⃣ Test Live Notifications
 🔹 Option A: Test with Local Notification
 
 - Tap the "Send Local Notification" button in the app
