@@ -19,9 +19,11 @@ import org.json.JSONObject
 
 class FirebaseService : FirebaseMessagingService() {
 
-    private val channelId = "Channel Id"
-    private val channelName = "Channel Name"
-    private val channelDescription = "Channel Description"
+    companion object {
+        private const val CHANNEL_ID = "Channel Id"
+        private const val CHANNEL_NAME = "Channel Name"
+        private const val CHANNEL_DESCRIPTION = "Channel Description"
+    }
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
@@ -35,7 +37,7 @@ class FirebaseService : FirebaseMessagingService() {
         }
 
         val notificationModel = NotificationModel(JSONObject(message.data as Map<*, *>))
-        Notification.Builder(this, channelId).apply {
+        Notification.Builder(this, CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_android_black_24dp)
             setContentTitle(notificationModel.title)
             setContentText(notificationModel.body)
@@ -121,8 +123,8 @@ class FirebaseService : FirebaseMessagingService() {
 
     private fun createNotificationChannel() {
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        NotificationChannel(channelId, channelName, importance).apply {
-            description = channelDescription
+        NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
+            description = CHANNEL_DESCRIPTION
             with((this@FirebaseService.getSystemService(NOTIFICATION_SERVICE) as NotificationManager)) {
                 createNotificationChannel(this@apply)
             }

@@ -16,11 +16,11 @@ import com.nicos.liveupdatenotification.R
 
 class LocalNotification(private val context: Context) {
 
-    private val channelId = "Channel Id"
-    private val channelName = "Channel Name"
-    private val channelDescription = "Channel Description"
-
     companion object {
+        private const val CHANNEL_ID = "Channel Id"
+        private const val CHANNEL_NAME = "Channel Name"
+        private const val CHANNEL_DESCRIPTION = "Channel Description"
+
         private const val CURRENT_PROGRESS = 55
         private const val CURRENT_PROGRESS_SEGMENT_ONE = 33
         private const val CURRENT_PROGRESS_SEGMENT_TWO = 33
@@ -30,7 +30,7 @@ class LocalNotification(private val context: Context) {
     }
 
     internal fun showNotification() {
-        Notification.Builder(context, channelId).apply {
+        Notification.Builder(context, CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_android_black_24dp)
             setContentTitle(context.getString(R.string.local_notification_title))
             setContentText(context.getString(R.string.local_notification_text))
@@ -109,8 +109,8 @@ class LocalNotification(private val context: Context) {
 
     private fun createNotificationChannel() {
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        NotificationChannel(channelId, channelName, importance).apply {
-            description = channelDescription
+        NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
+            description = CHANNEL_DESCRIPTION
             with((context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager)) {
                 createNotificationChannel(this@apply)
             }
