@@ -95,7 +95,7 @@ fun MainUi(
         Button(
             onClick = localNotificationClicked
         ) {
-            Text(stringResource(R.string.local_notification))
+            Text(stringResource(R.string.sent_local_notification))
         }
     }
 }
