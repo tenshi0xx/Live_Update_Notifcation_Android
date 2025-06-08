@@ -42,8 +42,8 @@ notifications to deliver rich, timely updates to the user.
 
 - Go to Firebase Console and create a new project (or use an existing one).
 - Add an Android app to the Firebase project using your app’s package name.
-    - 💡 Tip: You can change the application ID (package name) in build.gradle and
-      AndroidManifest.xml to match your preferred namespace (e.g., com.yourname.app).
+    - 💡 Tip: You can change the application ID (package name) in build.gradle to match your
+      preferred namespace (e.g., com.yourname.app).
 - Download the google-services.json file and place it in the /app directory.
 - Enable Firebase Cloud Messaging (FCM) in the Firebase Console under Build > Cloud Messaging.
 - Launch the app and tap the "Get FCM Token" button:
