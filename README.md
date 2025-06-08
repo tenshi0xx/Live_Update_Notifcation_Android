@@ -72,8 +72,8 @@ notifications to deliver rich, timely updates to the user.
 
 ```json
 {
-  "title": "Test",
-  "body": "Test",
+  "title": "Live Update Title",
+  "body": "Live Update Body",
   "currentProgress": "55",
   "currentProgressSegmentOne": "33",
   "currentProgressSegmentTwo": "33",
