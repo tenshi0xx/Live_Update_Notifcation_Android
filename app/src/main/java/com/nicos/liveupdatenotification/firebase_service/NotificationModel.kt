@@ -9,8 +9,10 @@ data class NotificationModel(
     val currentProgressSegmentOne: Int? = null,
     val currentProgressSegmentTwo: Int? = null,
     val currentProgressSegmentThree: Int? = null,
+    val currentProgressSegmentFour: Int? = null,
     val currentProgressPointOne: Int? = null,
     val currentProgressPointTwo: Int? = null,
+    val currentProgressPointThree: Int? = null
 ) {
     constructor(jsonObject: JSONObject) : this(
         jsonObject.optString("title"),
@@ -19,9 +21,21 @@ data class NotificationModel(
         jsonObject.optInt("currentProgressSegmentOne"),
         jsonObject.optInt("currentProgressSegmentTwo"),
         jsonObject.optInt("currentProgressSegmentThree"),
+        jsonObject.optInt("currentProgressSegmentFour"),
         jsonObject.optInt("currentProgressPointOne"),
-        jsonObject.optInt("currentProgressPointTwo")
+        jsonObject.optInt("currentProgressPointTwo"),
+        jsonObject.optInt("currentProgressPointThree")
     )
 
-    constructor() : this("", "", null, null, null, null, null, null)
+    constructor() : this(
+        "",
+        "",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    )
 }

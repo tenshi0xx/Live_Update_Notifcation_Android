@@ -22,11 +22,12 @@ class LocalNotification(private val context: Context) {
         private const val CHANNEL_DESCRIPTION = "Channel Description"
 
         private const val CURRENT_PROGRESS = 55
-        private const val CURRENT_PROGRESS_SEGMENT_ONE = 33
-        private const val CURRENT_PROGRESS_SEGMENT_TWO = 33
-        private const val CURRENT_PROGRESS_SEGMENT_THREE = 33
-        private const val CURRENT_PROGRESS_POINT_ONE = 33
-        private const val CURRENT_PROGRESS_POINT_TWO = 66
+        private const val CURRENT_PROGRESS_SEGMENT_ONE = 25
+        private const val CURRENT_PROGRESS_SEGMENT_TWO = 25
+        private const val CURRENT_PROGRESS_SEGMENT_THREE = 25
+        private const val CURRENT_PROGRESS_POINT_ONE = 25
+        private const val CURRENT_PROGRESS_POINT_TWO = 50
+        private const val CURRENT_PROGRESS_POINT_THREE = 75
     }
 
     internal fun showNotification() {
@@ -103,6 +104,8 @@ class LocalNotification(private val context: Context) {
             Notification.ProgressStyle.Point(CURRENT_PROGRESS_POINT_ONE)
                 .setColor(context.getColor(android.R.color.holo_green_light)),
             Notification.ProgressStyle.Point(CURRENT_PROGRESS_POINT_TWO)
+                .setColor(context.getColor(android.R.color.holo_green_light)),
+            Notification.ProgressStyle.Point(CURRENT_PROGRESS_POINT_THREE)
                 .setColor(context.getColor(android.R.color.holo_green_light))
         )
     }

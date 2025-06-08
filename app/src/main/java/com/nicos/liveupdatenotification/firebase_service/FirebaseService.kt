@@ -93,14 +93,16 @@ class FirebaseService : FirebaseMessagingService() {
 
     @RequiresApi(Build.VERSION_CODES.BAKLAVA)
     private fun handleProgressSegment(notificationModel: NotificationModel): List<Notification.ProgressStyle.Segment> {
-        if (notificationModel.currentProgressSegmentOne != null && notificationModel.currentProgressSegmentTwo != null && notificationModel.currentProgressSegmentThree != null) {
+        if (notificationModel.currentProgressSegmentOne != null && notificationModel.currentProgressSegmentTwo != null && notificationModel.currentProgressSegmentThree != null && notificationModel.currentProgressSegmentFour != null) {
             return listOf(
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentOne)
                     .setColor(this@FirebaseService.getColor(R.color.teal_200)),
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentTwo)
                     .setColor(this@FirebaseService.getColor(R.color.purple_200)),
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentThree)
-                    .setColor(this@FirebaseService.getColor(R.color.purple_700))
+                    .setColor(this@FirebaseService.getColor(R.color.purple_700)),
+                Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentFour)
+                    .setColor(this@FirebaseService.getColor(R.color.teal_700))
 
             )
         }
@@ -110,11 +112,13 @@ class FirebaseService : FirebaseMessagingService() {
 
     @RequiresApi(Build.VERSION_CODES.BAKLAVA)
     private fun handleProgressPoint(notificationModel: NotificationModel): List<Notification.ProgressStyle.Point> {
-        if (notificationModel.currentProgressPointOne != null && notificationModel.currentProgressPointTwo != null) {
+        if (notificationModel.currentProgressPointOne != null && notificationModel.currentProgressPointTwo != null && notificationModel.currentProgressPointThree != null) {
             return listOf(
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointOne)
                     .setColor(this@FirebaseService.getColor(android.R.color.holo_green_light)),
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointTwo)
+                    .setColor(this@FirebaseService.getColor(android.R.color.holo_green_light)),
+                Notification.ProgressStyle.Point(notificationModel.currentProgressPointThree)
                     .setColor(this@FirebaseService.getColor(android.R.color.holo_green_light))
             )
         }

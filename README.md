@@ -82,8 +82,10 @@ notifications to deliver rich, timely updates to the user.
   "currentProgressSegmentOne": "33",
   "currentProgressSegmentTwo": "33",
   "currentProgressSegmentThree": "33",
+  "currentProgressSegmentFour": "33",
   "currentProgressPointOne": "33",
-  "currentProgressPointTwo": "66"
+  "currentProgressPointTwo": "66",
+  "currentProgressPointThree": "75"
 }
 
 ```
