@@ -61,22 +61,29 @@ class LocalNotification(private val context: Context) {
 
     private fun getAndCreateProgressStyle(): Notification.ProgressStyle {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+            // Handle the segments
             val progressSegmentList: List<Notification.ProgressStyle.Segment> =
                 handleProgressSegment()
+            // Handle the points
             val progressPointList: List<Notification.ProgressStyle.Point> =
                 handleProgressPoint()
+            // Create the progress style
             Notification.ProgressStyle().apply {
                 setStyledByProgress(false)
+                // Set the current progress
                 setProgress(CURRENT_PROGRESS)
+                // Set the progress tracker icon
                 setProgressTrackerIcon(
                     Icon.createWithResource(
                         context,
                         R.drawable.ic_android_red_24dp
                     )
                 )
+                // Set the segments
                 setProgressSegments(
                     progressSegmentList
                 )
+                // Set the points
                 setProgressPoints(
                     progressPointList
                 )

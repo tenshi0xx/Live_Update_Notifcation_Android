@@ -20,9 +20,9 @@ import org.json.JSONObject
 class FirebaseService : FirebaseMessagingService() {
 
     companion object {
-        private const val CHANNEL_ID = "Channel Id"
-        private const val CHANNEL_NAME = "Channel Name"
-        private const val CHANNEL_DESCRIPTION = "Channel Description"
+        private const val CHANNEL_ID = "Firebase Channel Id"
+        private const val CHANNEL_NAME = "Firebase Channel Name"
+        private const val CHANNEL_DESCRIPTION = "Firebase Channel Description"
     }
 
     override fun onNewToken(token: String) {
@@ -66,22 +66,28 @@ class FirebaseService : FirebaseMessagingService() {
 
     private fun getAndCreateProgressStyle(notificationModel: NotificationModel): Notification.ProgressStyle {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+            // Handle the segments
             val progressSegmentList: List<Notification.ProgressStyle.Segment> =
                 handleProgressSegment(notificationModel)
+            // Handle the points
             val progressPointList: List<Notification.ProgressStyle.Point> =
                 handleProgressPoint(notificationModel)
             Notification.ProgressStyle().apply {
                 setStyledByProgress(false)
+                // Set the current progress
                 setProgress(notificationModel.currentProgress ?: 0)
+                // Set the progress tracker icon
                 setProgressTrackerIcon(
                     Icon.createWithResource(
                         this@FirebaseService,
                         R.drawable.ic_android_red_24dp
                     )
                 )
+                // Set the segments
                 setProgressSegments(
                     progressSegmentList
                 )
+                // Set the points
                 setProgressPoints(
                     progressPointList
                 )

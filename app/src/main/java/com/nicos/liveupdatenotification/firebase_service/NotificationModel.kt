@@ -14,6 +14,7 @@ data class NotificationModel(
     val currentProgressPointTwo: Int? = null,
     val currentProgressPointThree: Int? = null
 ) {
+    // Parse the data
     constructor(jsonObject: JSONObject) : this(
         jsonObject.optString("title"),
         jsonObject.optString("body"),
@@ -27,6 +28,7 @@ data class NotificationModel(
         jsonObject.optInt("currentProgressPointThree")
     )
 
+    // Empty Constructor
     constructor() : this(
         "",
         "",
