@@ -104,7 +104,7 @@ notifications to deliver rich, timely updates to the user.
   perfect for use cases like order tracking, fitness goals, or download status.
 
 <p align="left">
-  <a title="simulator_image"><img src="examples/Screenshot 2025-06-08 192944.png" height="500" width="500"></a>
+  <a title="simulator_image"><img src="examples/Screenshot 2025-06-08 192944.png" height="500" width="700"></a>
 </p>
 
 # Versioning
