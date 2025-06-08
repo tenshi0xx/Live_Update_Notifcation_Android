@@ -86,7 +86,7 @@ notifications to deliver rich, timely updates to the user.
 {
   "title": "Live Update Remote Title",
   "body": "Live Update Remote Body",
-  "currentProgress": "55",
+  "currentProgress": "80",
   "currentProgressSegmentOne": "33",
   "currentProgressSegmentTwo": "33",
   "currentProgressSegmentThree": "33",
