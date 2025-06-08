@@ -37,8 +37,9 @@ notifications to deliver rich, timely updates to the user.
 
 # 📚 Getting Started
 
-1️⃣ Clone the Repository <br />
-2️⃣ Set Up Firebase
+### 1️⃣ Clone the Repository <br />
+
+### 2️⃣ Set Up Firebase
 
 - Go to Firebase Console and create a new project (or use an existing one).
 - Add an Android app to the Firebase project using your app’s package name.
@@ -50,12 +51,13 @@ notifications to deliver rich, timely updates to the user.
     - The token will be shown in a toast and logged in Logcat
     - Copy this token for sending test messages
 
-3️⃣ Run the App
+### 3️⃣ Run the App
 
 - Connect a physical device or use an emulator running Android 16
 - Press Run in Android Studio to build and install the app
 
-4️⃣ Test Live Notifications <br />
+### 4️⃣ Test Live Notifications <br />
+
 🔹 Option A: Test with Local Notification
 
 - Tap the "Send Local Notification" button in the app
@@ -66,6 +68,8 @@ notifications to deliver rich, timely updates to the user.
 - Go to Firebase Console > Cloud Messaging > Send Your First Message
 - Enter a title and body (these will be overridden by data payload)
 - Open Advanced options → Data
+- In the Target section, select Single Device
+- Paste the FCM token from the app
 - Add the following key-value pairs:
 
 ### 📝 Example FCM Payload
@@ -84,12 +88,10 @@ notifications to deliver rich, timely updates to the user.
 
 ```
 
-- In the Target section, select Single Device
-- Paste the FCM token from the app
 - Click Send Message
 
-📌 The payload demonstrates segmented and point-based progress tracking in a live notification,
-perfect for use cases like order tracking, fitness goals, or download status.
+  📌 The payload demonstrates segmented and point-based progress tracking in a live notification,
+  perfect for use cases like order tracking, fitness goals, or download status.
 
 # Versioning
 
