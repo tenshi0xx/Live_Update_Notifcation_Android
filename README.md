@@ -106,7 +106,7 @@ notifications to deliver rich, timely updates to the user.
 # Firebase Cloud Messaging
 
 <p align="left">
-  <a title="simulator_image"><img src="examples/Screenshot 2025-06-08 192944.png" height="550" width="777"></a>
+  <a title="simulator_image"><img src="examples/Screenshot 2025-06-08 192944.png" height="600" width="777"></a>
 </p>
 
 # Versioning
