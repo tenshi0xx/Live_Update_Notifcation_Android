@@ -103,7 +103,7 @@ notifications to deliver rich, timely updates to the user.
   📌 The payload demonstrates segmented and point-based progress tracking in a live notification,
   perfect for use cases like order tracking, fitness goals, or download status.
 
-# Firebase Cloud Messaging
+# Firebase Cloud Messaging (Example)
 
 <p align="left">
   <a title="simulator_image"><img src="examples/Screenshot 2025-06-08 192944.png" height="600" width="777"></a>
