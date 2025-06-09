@@ -1,10 +1,14 @@
 package com.nicos.liveupdatenotification
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,20 +33,70 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var localNotification: LocalNotification
 
+    private val requestPermissionLauncherForRemoteNotification =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                if (BuildConfig.DEBUG) {
+                    Log.d("PERMISSION_REQUEST", "POST_NOTIFICATIONS permission granted.")
+                }
+                getFCMToken()
+            } else {
+                if (BuildConfig.DEBUG) {
+                    Log.w("PERMISSION_REQUEST", "POST_NOTIFICATIONS permission denied.")
+                }
+                Toast.makeText(
+                    this,
+                    getString(R.string.notification_permission_denied_some_features_might_be_unavailable),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+
+    private val requestPermissionLauncherForLocalNotification =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+                if (BuildConfig.DEBUG) {
+                    Log.d("PERMISSION_REQUEST", "POST_NOTIFICATIONS permission granted.")
+                }
+                localNotification.showNotification()
+            } else {
+                if (BuildConfig.DEBUG) {
+                    Log.w("PERMISSION_REQUEST", "POST_NOTIFICATIONS permission denied.")
+                }
+                Toast.makeText(
+                    this,
+                    getString(R.string.notification_permission_denied_some_features_might_be_unavailable),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         localNotification = LocalNotification(this)
         setContent {
+            val shouldRequestPermission =
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !shouldShowRequestPermissionRationale(
+                    Manifest.permission.POST_NOTIFICATIONS
+                )
             LiveUpdateNotificationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MainUi(
                         modifier = Modifier.padding(innerPadding),
                         fcmNotificationClicked = {
-                            getFCMToken()
+                            if (shouldRequestPermission) {
+                                requestPermissionLauncherForRemoteNotification.launch(Manifest.permission.POST_NOTIFICATIONS)
+                            } else {
+                                getFCMToken()
+                            }
                         },
                         localNotificationClicked = {
-                            localNotification.showNotification()
+                            if (shouldRequestPermission) {
+                                requestPermissionLauncherForLocalNotification.launch(Manifest.permission.POST_NOTIFICATIONS)
+                            } else {
+                                localNotification.showNotification()
+                            }
                         }
                     )
                 }
@@ -51,7 +105,7 @@ class MainActivity : ComponentActivity() {
     }
 
 
-    fun getFCMToken() {
+    private fun getFCMToken() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 if (BuildConfig.DEBUG) {

@@ -38,9 +38,9 @@ class LocalNotification(private val context: Context) {
             setContentText(context.getString(R.string.local_notification_text))
             setAutoCancel(true)
 
-            var progressStyle: Notification.ProgressStyle =
+            var progressStyle: Notification.ProgressStyle? =
                 getAndCreateProgressStyle()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && progressStyle != null) {
                 setStyle(progressStyle)
             }
 
@@ -59,7 +59,7 @@ class LocalNotification(private val context: Context) {
         }
     }
 
-    private fun getAndCreateProgressStyle(): Notification.ProgressStyle {
+    private fun getAndCreateProgressStyle(): Notification.ProgressStyle? {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
             // Handle the segments
             val progressSegmentList: List<Notification.ProgressStyle.Segment> =
@@ -89,7 +89,8 @@ class LocalNotification(private val context: Context) {
                 )
             }
         } else {
-            TODO("VERSION.SDK_INT < BAKLAVA")
+            // TODO("VERSION.SDK_INT < BAKLAVA")
+            return null
         }
     }
 
