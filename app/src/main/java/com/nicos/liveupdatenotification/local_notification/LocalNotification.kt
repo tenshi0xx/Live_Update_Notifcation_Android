@@ -38,11 +38,13 @@ class LocalNotification(private val context: Context) {
             setContentText(context.getString(R.string.local_notification_text))
             setAutoCancel(true)
 
+            // Begin Live Update
             var progressStyle: Notification.ProgressStyle? =
                 getAndCreateProgressStyle()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && progressStyle != null) {
                 setStyle(progressStyle)
             }
+            // End of Live Update
 
             createNotificationChannel()
 

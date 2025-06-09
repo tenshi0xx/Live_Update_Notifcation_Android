@@ -43,11 +43,13 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             setContentText(notificationModel.body)
             setAutoCancel(true)
 
+            // Begin Live Update
             var progressStyle: Notification.ProgressStyle? =
                 getAndCreateProgressStyle(notificationModel)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && progressStyle != null) {
                 setStyle(progressStyle)
             }
+            // End of Live Update
 
             createNotificationChannel()
 
