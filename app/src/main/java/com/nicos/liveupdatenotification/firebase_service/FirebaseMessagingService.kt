@@ -17,7 +17,7 @@ import com.nicos.liveupdatenotification.BuildConfig
 import com.nicos.liveupdatenotification.R
 import org.json.JSONObject
 
-class FirebaseService : FirebaseMessagingService() {
+class FirebaseMessagingService : FirebaseMessagingService() {
 
     companion object {
         private const val CHANNEL_ID = "Firebase Channel Id"
@@ -43,17 +43,17 @@ class FirebaseService : FirebaseMessagingService() {
             setContentText(notificationModel.body)
             setAutoCancel(true)
 
-            var progressStyle: Notification.ProgressStyle =
+            var progressStyle: Notification.ProgressStyle? =
                 getAndCreateProgressStyle(notificationModel)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && progressStyle != null) {
                 setStyle(progressStyle)
             }
 
             createNotificationChannel()
 
-            with(NotificationManagerCompat.from(this@FirebaseService)) {
+            with(NotificationManagerCompat.from(this@FirebaseMessagingService)) {
                 if (ActivityCompat.checkSelfPermission(
-                        this@FirebaseService,
+                        this@FirebaseMessagingService,
                         Manifest.permission.POST_NOTIFICATIONS
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
@@ -64,7 +64,7 @@ class FirebaseService : FirebaseMessagingService() {
         }
     }
 
-    private fun getAndCreateProgressStyle(notificationModel: NotificationModel): Notification.ProgressStyle {
+    private fun getAndCreateProgressStyle(notificationModel: NotificationModel): Notification.ProgressStyle? {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
             // Handle the segments
             val progressSegmentList: List<Notification.ProgressStyle.Segment> =
@@ -79,7 +79,7 @@ class FirebaseService : FirebaseMessagingService() {
                 // Set the progress tracker icon
                 setProgressTrackerIcon(
                     Icon.createWithResource(
-                        this@FirebaseService,
+                        this@FirebaseMessagingService,
                         R.drawable.ic_android_red_24dp
                     )
                 )
@@ -93,7 +93,8 @@ class FirebaseService : FirebaseMessagingService() {
                 )
             }
         } else {
-            TODO("VERSION.SDK_INT < BAKLAVA")
+            // TODO("VERSION.SDK_INT < BAKLAVA")
+            return null
         }
     }
 
@@ -102,13 +103,13 @@ class FirebaseService : FirebaseMessagingService() {
         if (notificationModel.currentProgressSegmentOne != null && notificationModel.currentProgressSegmentTwo != null && notificationModel.currentProgressSegmentThree != null && notificationModel.currentProgressSegmentFour != null) {
             return listOf(
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentOne)
-                    .setColor(this@FirebaseService.getColor(R.color.teal_200)),
+                    .setColor(this@FirebaseMessagingService.getColor(R.color.teal_200)),
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentTwo)
-                    .setColor(this@FirebaseService.getColor(R.color.purple_200)),
+                    .setColor(this@FirebaseMessagingService.getColor(R.color.purple_200)),
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentThree)
-                    .setColor(this@FirebaseService.getColor(R.color.purple_700)),
+                    .setColor(this@FirebaseMessagingService.getColor(R.color.purple_700)),
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentFour)
-                    .setColor(this@FirebaseService.getColor(R.color.teal_700))
+                    .setColor(this@FirebaseMessagingService.getColor(R.color.teal_700))
 
             )
         }
@@ -121,11 +122,11 @@ class FirebaseService : FirebaseMessagingService() {
         if (notificationModel.currentProgressPointOne != null && notificationModel.currentProgressPointTwo != null && notificationModel.currentProgressPointThree != null) {
             return listOf(
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointOne)
-                    .setColor(this@FirebaseService.getColor(android.R.color.holo_green_light)),
+                    .setColor(this@FirebaseMessagingService.getColor(android.R.color.holo_green_light)),
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointTwo)
-                    .setColor(this@FirebaseService.getColor(android.R.color.holo_green_light)),
+                    .setColor(this@FirebaseMessagingService.getColor(android.R.color.holo_green_light)),
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointThree)
-                    .setColor(this@FirebaseService.getColor(android.R.color.holo_green_light))
+                    .setColor(this@FirebaseMessagingService.getColor(android.R.color.holo_green_light))
             )
         }
         return emptyList()
@@ -135,7 +136,7 @@ class FirebaseService : FirebaseMessagingService() {
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
             description = CHANNEL_DESCRIPTION
-            with((this@FirebaseService.getSystemService(NOTIFICATION_SERVICE) as NotificationManager)) {
+            with((this@FirebaseMessagingService.getSystemService(NOTIFICATION_SERVICE) as NotificationManager)) {
                 createNotificationChannel(this@apply)
             }
         }
