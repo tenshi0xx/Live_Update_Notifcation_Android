@@ -40,7 +40,7 @@ notifications to deliver rich, timely updates to the user.
 
 # 🔧 Requirements
 
-- Target SDK 34 (Android 14), compiled against Android 16 preview SDK
+- Target SDK 36 (Android 16)
 - Firebase project (for push notifications)
 
 # 📚 Getting Started
