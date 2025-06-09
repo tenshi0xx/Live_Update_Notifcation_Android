@@ -17,7 +17,7 @@ import com.nicos.liveupdatenotification.BuildConfig
 import com.nicos.liveupdatenotification.R
 import org.json.JSONObject
 
-class FirebaseCloudMessagingService : FirebaseMessagingService() {
+class FirebaseMessagingService : FirebaseMessagingService() {
 
     companion object {
         private const val CHANNEL_ID = "Firebase Channel Id"
@@ -51,9 +51,9 @@ class FirebaseCloudMessagingService : FirebaseMessagingService() {
 
             createNotificationChannel()
 
-            with(NotificationManagerCompat.from(this@FirebaseCloudMessagingService)) {
+            with(NotificationManagerCompat.from(this@FirebaseMessagingService)) {
                 if (ActivityCompat.checkSelfPermission(
-                        this@FirebaseCloudMessagingService,
+                        this@FirebaseMessagingService,
                         Manifest.permission.POST_NOTIFICATIONS
                     ) != PackageManager.PERMISSION_GRANTED
                 ) {
@@ -79,7 +79,7 @@ class FirebaseCloudMessagingService : FirebaseMessagingService() {
                 // Set the progress tracker icon
                 setProgressTrackerIcon(
                     Icon.createWithResource(
-                        this@FirebaseCloudMessagingService,
+                        this@FirebaseMessagingService,
                         R.drawable.ic_android_red_24dp
                     )
                 )
@@ -103,13 +103,13 @@ class FirebaseCloudMessagingService : FirebaseMessagingService() {
         if (notificationModel.currentProgressSegmentOne != null && notificationModel.currentProgressSegmentTwo != null && notificationModel.currentProgressSegmentThree != null && notificationModel.currentProgressSegmentFour != null) {
             return listOf(
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentOne)
-                    .setColor(this@FirebaseCloudMessagingService.getColor(R.color.teal_200)),
+                    .setColor(this@FirebaseMessagingService.getColor(R.color.teal_200)),
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentTwo)
-                    .setColor(this@FirebaseCloudMessagingService.getColor(R.color.purple_200)),
+                    .setColor(this@FirebaseMessagingService.getColor(R.color.purple_200)),
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentThree)
-                    .setColor(this@FirebaseCloudMessagingService.getColor(R.color.purple_700)),
+                    .setColor(this@FirebaseMessagingService.getColor(R.color.purple_700)),
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentFour)
-                    .setColor(this@FirebaseCloudMessagingService.getColor(R.color.teal_700))
+                    .setColor(this@FirebaseMessagingService.getColor(R.color.teal_700))
 
             )
         }
@@ -122,11 +122,11 @@ class FirebaseCloudMessagingService : FirebaseMessagingService() {
         if (notificationModel.currentProgressPointOne != null && notificationModel.currentProgressPointTwo != null && notificationModel.currentProgressPointThree != null) {
             return listOf(
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointOne)
-                    .setColor(this@FirebaseCloudMessagingService.getColor(android.R.color.holo_green_light)),
+                    .setColor(this@FirebaseMessagingService.getColor(android.R.color.holo_green_light)),
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointTwo)
-                    .setColor(this@FirebaseCloudMessagingService.getColor(android.R.color.holo_green_light)),
+                    .setColor(this@FirebaseMessagingService.getColor(android.R.color.holo_green_light)),
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointThree)
-                    .setColor(this@FirebaseCloudMessagingService.getColor(android.R.color.holo_green_light))
+                    .setColor(this@FirebaseMessagingService.getColor(android.R.color.holo_green_light))
             )
         }
         return emptyList()
@@ -136,7 +136,7 @@ class FirebaseCloudMessagingService : FirebaseMessagingService() {
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance).apply {
             description = CHANNEL_DESCRIPTION
-            with((this@FirebaseCloudMessagingService.getSystemService(NOTIFICATION_SERVICE) as NotificationManager)) {
+            with((this@FirebaseMessagingService.getSystemService(NOTIFICATION_SERVICE) as NotificationManager)) {
                 createNotificationChannel(this@apply)
             }
         }
