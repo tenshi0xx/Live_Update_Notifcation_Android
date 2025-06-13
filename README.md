@@ -109,6 +109,9 @@ notifications to deliver rich, timely updates to the user.
   <a title="simulator_image"><img src="examples/Screenshot 2025-06-08 192944.png" height="600" width="777"></a>
 </p>
 
+> [!IMPORTANT]  
+> Check my article for the setup :point_right: [Implementing Live Update Notifications in Android 16 - Medium](https://medium.com/@nicosnicolaou/implementing-live-update-notifications-in-android-16-7c962ec6c373) :point_left: <br />
+
 # Versioning
 
 Target SDK version: 36 <br />
