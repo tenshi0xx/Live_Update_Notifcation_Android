@@ -102,7 +102,11 @@ class FirebaseMessagingService : FirebaseMessagingService() {
 
     @RequiresApi(Build.VERSION_CODES.BAKLAVA)
     private fun handleProgressSegment(notificationModel: NotificationModel): List<Notification.ProgressStyle.Segment> {
-        if (notificationModel.currentProgressSegmentOne != null && notificationModel.currentProgressSegmentTwo != null && notificationModel.currentProgressSegmentThree != null && notificationModel.currentProgressSegmentFour != null) {
+        if (notificationModel.currentProgressSegmentOne != null &&
+            notificationModel.currentProgressSegmentTwo != null &&
+            notificationModel.currentProgressSegmentThree != null &&
+            notificationModel.currentProgressSegmentFour != null
+        ) {
             return listOf(
                 Notification.ProgressStyle.Segment(notificationModel.currentProgressSegmentOne)
                     .setColor(this@FirebaseMessagingService.getColor(R.color.teal_200)),
@@ -121,7 +125,10 @@ class FirebaseMessagingService : FirebaseMessagingService() {
 
     @RequiresApi(Build.VERSION_CODES.BAKLAVA)
     private fun handleProgressPoint(notificationModel: NotificationModel): List<Notification.ProgressStyle.Point> {
-        if (notificationModel.currentProgressPointOne != null && notificationModel.currentProgressPointTwo != null && notificationModel.currentProgressPointThree != null) {
+        if (notificationModel.currentProgressPointOne != null &&
+            notificationModel.currentProgressPointTwo != null &&
+            notificationModel.currentProgressPointThree != null
+        ) {
             return listOf(
                 Notification.ProgressStyle.Point(notificationModel.currentProgressPointOne)
                     .setColor(this@FirebaseMessagingService.getColor(android.R.color.holo_green_light)),
