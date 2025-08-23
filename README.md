@@ -21,6 +21,7 @@ notifications to deliver rich, timely updates to the user.
   <a title="simulator_image"><img src="examples/Screenshot_20250608_203141.png" height="500" width="200"></a>
   <a title="simulator_image"><img src="examples/Screenshot_20250608_202552.png" height="500" width="200"></a>
   <a title="simulator_image"><img src="examples/Screenshot_20250608_203127.png" height="500" width="200"></a>
+  <a title="simulator_image"><img src="examples/example_gif1.gif" height="500" width="200"></a>
 </p>
 
 # 🚀 Features
